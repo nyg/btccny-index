@@ -41,7 +41,7 @@ function handleOKCoin(message) {
 
 /* Add each trade to a fixed-size queue and compute the VW average. */
 
-var queue = new FixedQueue(2000)
+var queue = new FixedQueue(100)
 
 function newTrade(exchange, price, amount) {
     queue.add({ price: price, amount: amount })
