@@ -27,9 +27,12 @@ huobi.on('message', function(data) {
 
 /* OKCoin */
 
-new OKCoin('cn', {
+new OKCoin()
+.setChannels({
     ok_sub_spotcny_btc_trades: handleOKCoin,
-}).start()
+})
+.isCny()
+.start()
 
 function handleOKCoin(message) {
     if (message.hasOwnProperty('data')) {
@@ -41,7 +44,7 @@ function handleOKCoin(message) {
 
 /* Add each trade to a fixed-size queue and compute the VW average. */
 
-var queue = new FixedQueue(100)
+var queue = new FixedQueue(200)
 
 function newTrade(exchange, price, amount) {
     queue.add({ price: price, amount: amount })
